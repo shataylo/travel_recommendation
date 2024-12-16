@@ -9,7 +9,43 @@
       margin: 0; /* Remove default margins */
     }
   </style>
+<script>
+function searchKeywords() {
+  const searchInput = document.getElementById('text');
+  const keyword = searchInput.value.toLowerCase();
 
+  // You can add more keywords and their variations here
+  const keywords = {
+    beaches: ['beach', 'beaches'],
+    temples: ['temple', 'temples'],
+    countries: ['country', 'countries']
+  };
+
+  // Check if the keyword matches any of the variations
+  let matchedKeyword = null;
+  for (const [key, variations] of Object.entries(keywords)) {
+    if (variations.includes(keyword)) {
+      matchedKeyword = key;
+      break;
+    }
+  }
+
+  // If a match is found, perform the search action
+  if (matchedKeyword) {
+    fetch('travel_recommendation_api.json')
+  .then(response => response.json())
+  .then(data => {
+
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+  } else {
+const result = document.getElementByID('result')
+    result.textContent='No recommendations found'
+  }
+}
+</script>
 </head>
 <body> 
   <nav>
@@ -19,12 +55,13 @@
       <li><a href="contact.html">Contact Us</a></li>
     </ul>
     <form>
-      <input type="text" placeholder="Search..." name="search">
-      <button type="submit">Search</button>
+      <input id="text" type="text" placeholder="Search..." name="search">
+      <button onclick="searchKeywords()" id="submit" type="submit">Search</button>
       <button type="reset">Reset</button>
     </form>
 <h1>Explore dream destination</h1>
 
 <h2>Check out our travel recommendations</h2>
+    <h3 id="result"></h3>
 </body>
     </html>
