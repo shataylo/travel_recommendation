@@ -31,7 +31,7 @@ function searchKeywords() {
   }
 
   // If a match is found, perform the search action
-  if (matchedKeyword) {
+  if (matchedKeyword!=null) {
     fetch('travel_recommendation_api.json')
   .then(response => response.json())
   .then(data => {
@@ -41,8 +41,8 @@ function searchKeywords() {
     console.error('Error fetching data:', error);
   });
   } else {
-const result = document.getElementByID('result')
-    result.textContent='No recommendations found'
+const noresult = document.getElementByID('result')
+    noresult.textContent="No recommendations found"
   }
 }
 </script>
